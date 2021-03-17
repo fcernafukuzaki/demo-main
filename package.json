@@ -5,7 +5,7 @@
   "scripts": {
     "preinstall": "npx only-allow npm",
     "install_local": "npm install",
-    "start": "npm run preinstall && install_local && generate:consent-map && react-scripts start",
+    "start": "npm run install_local && generate:consent-map && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
