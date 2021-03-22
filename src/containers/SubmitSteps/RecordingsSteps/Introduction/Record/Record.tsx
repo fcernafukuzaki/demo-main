@@ -1,6 +1,6 @@
 import React from 'react';
 import usePortal from 'react-useportal';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 // Form
 import { Controller, useForm } from 'react-hook-form';
@@ -100,10 +100,7 @@ const Record = ({
     <>
       <MainContainer>
         <Text>
-          <Trans i18nKey="recordingsRecord:text">
-            Click the record button and cough intentionally 3 to 5 times <strong>during 3 seconds minimum</strong>.
-            When you are done, click Continue
-          </Trans>
+          {t('recordingsRecord:text')}
         </Text>
         <MicContainer>
           <Controller

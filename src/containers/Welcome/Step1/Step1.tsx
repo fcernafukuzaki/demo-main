@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import usePortal from 'react-useportal';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 // Form
 import { useForm, Controller } from 'react-hook-form';
@@ -12,7 +12,6 @@ import * as Yup from 'yup';
 // Components
 import WizardButtons from 'components/WizardButtons';
 import Dropdown from 'components/Dropdown';
-import Link from 'components/Link';
 
 // Update Action
 import { updateAction } from 'utils/wizard';
@@ -38,8 +37,6 @@ import {
   WelcomeStyledForm,
   // WelcomeInput,
   // WelcomeRequiredFieldText,
-  IntroductionText,
-  IntroductionRecommendations,
 } from '../style';
 
 const schema = Yup.object().shape({
@@ -131,7 +128,7 @@ const Step1 = (p: Wizard.StepProps) => {
 
       {/* Title */}
       <WelcomeTitle
-        fontSize={isDesktop ? 32 : 24}
+        fontSize={isDesktop ? 42 : 34}
       >
         {t('main:title')}
       </WelcomeTitle>
@@ -142,10 +139,8 @@ const Step1 = (p: Wizard.StepProps) => {
         {/* Content: Subtitle */}
         <WelcomeSubtitle
           fontWeight={400}
-          mb={isDesktop ? 30 : 10}
+          mb={isDesktop ? 50 : 30}
           mt={width && width > 560 ? 0 : -14}
-          lineHeight={20}
-          textAlign="center"
         >
           {t('main:paragraph1')}
         </WelcomeSubtitle>
@@ -175,31 +170,60 @@ const Step1 = (p: Wizard.StepProps) => {
           )}
         />
 
-        <IntroductionText>
-          <Trans i18nKey="main:introductionText">
-            <strong>Important note:</strong> this app is only for demonstration purposes and does not provide a
-            prediction. Please visit <Link to="https://virufy.org/app" target="_blank">virufy.org/app</Link> to
-            contribute your cough and help us to complete this app.
-          </Trans>
-        </IntroductionText>
-        <IntroductionRecommendations>
-          <Trans i18nKey="main:introductionRecomendations">
-            <strong>To reduce risk and self-harm, we advise you to:</strong>
-            <p>
-              Please use your own device and wear a mask when appropriate.
-            </p>
-            <p>
-              Disinfect your device and any affected or nearby surfaces after recording your cough/speech.
-            </p>
-            <p>
-              If you have an underlying condition that increases your risk from coughing, please check with your health
-              care provider before participating.
-            </p>
-            <p>
-              If you feel your symptoms are getting worse, please contact your local medical response.
-            </p>
-          </Trans>
-        </IntroductionRecommendations>
+        {/* Hospital Code */}
+        {/* <WelcomeSubtitle
+          mt={isDesktop ? 50 : 35}
+          mb={isDesktop ? 20 : 17}
+          fontSize={16}
+          fontWeight={700}
+          textAlign="left"
+        >
+          {t('main:hospitalCodeLabel')}
+          <WelcomeRequiredFieldText>*</WelcomeRequiredFieldText>
+        </WelcomeSubtitle>
+
+        <Controller
+          control={control}
+          name="hospitalCode"
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <WelcomeInput
+              value={value}
+              onChange={onChange}
+              type="text"
+              id="hospitalCode"
+              placeholder={t('main:hospitalCodePlaceholder')}
+              autoComplete="Off"
+            />
+          )}
+        /> */}
+
+        {/* Patient ID */}
+        {/* <WelcomeSubtitle
+          mt={isDesktop ? 50 : 17}
+          mb={isDesktop ? 20 : 17}
+          fontSize={16}
+          fontWeight={700}
+          textAlign="left"
+        >
+          {t('main:patientIdLabel')}
+          <WelcomeRequiredFieldText>*</WelcomeRequiredFieldText>
+        </WelcomeSubtitle>
+        <Controller
+          control={control}
+          name="patientId"
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <WelcomeInput
+              value={value}
+              onChange={onChange}
+              type="text"
+              id="patientId"
+              placeholder={t('main:patientIdPlaceholder')}
+              autoComplete="Off"
+            />
+          )}
+        /> */}
 
         {/* Wizard Buttons */}
         {
@@ -209,7 +233,6 @@ const Step1 = (p: Wizard.StepProps) => {
                 leftLabel={t('main:nextButton')}
                 leftHandler={handleSubmit(onSubmit)}
                 leftDisabled={!isValid}
-                invert
               />
             </Portal>
           )
